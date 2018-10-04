@@ -1,0 +1,24 @@
+{
+  "name": "vue-firebase-chat",
+  "version": "0.0.1",
+  "description": "Firebase chat component for Vue",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YuriiDunaev/vue-firebase-chat.git"
+  },
+  "keywords": [
+    "Firebase",
+    "Chat",
+    "Vue"
+  ],
+  "author": "Yurii Dunaev <ukolsd@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YuriiDunaev/vue-firebase-chat/issues"
+  },
+  "homepage": "https://github.com/YuriiDunaev/vue-firebase-chat#readme"
+}
