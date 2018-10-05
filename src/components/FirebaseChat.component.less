@@ -1,0 +1,26 @@
+@import "variables";
+.firebase-chat {
+  display: flex;
+  border: solid 1px @grey;
+  background: #fff;
+  height: ~'calc(100vh - 100px)';
+  min-height: 800px;
+  @media @tablet{
+    height: ~'calc(100vh - 248px)';
+    min-height: 600px;
+    margin-top: -2px;
+  }
+  @media @mobile{
+    height: ~'-webkit-calc(100vh - 125px)';
+    height: ~'calc(100vh - 125px)';
+    min-height: 300px;
+    &._is_active_message._is_hide_submit_message{
+      height: ~'-webkit-calc(100vh - 73px)';
+      height: ~'calc(100vh - 73px)';
+    }
+    &._is_active_message{
+      height: ~'-webkit-calc(100vh - 141px)';
+      height: ~'calc(100vh - 141px)';
+    }
+  }
+}

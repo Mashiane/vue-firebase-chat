@@ -1,0 +1,31 @@
+@import "./../../variables";
+.room {
+  border-bottom: solid 1px @grey;
+  font-size: 16px;
+  letter-spacing: 0.1px;
+  color: #000000;
+  padding: 18px 24px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-decoration: none;
+
+  &--active {
+    background: @blue;
+    border-color: @blue;
+    color: #fff;
+  }
+
+  &__unread_messages {
+    color: #fff;
+    background: @blue;
+    border-radius: 20px;
+    padding: 0 7px 3px;
+    font-size: 16px;
+    letter-spacing: 0.1px;
+    line-height: 1.2;
+    display: inline-block;
+    margin: 0 0 0 20px;
+  }
+}

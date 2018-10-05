@@ -1,0 +1,15 @@
+<a
+  :href="'#' + room.id"
+  @click="onChooseRoom(room)"
+  :data-id="room.id"
+  class="room"
+  :class="{'room--active': is_active}"
+>
+  <slot name="room_item" :room="room">
+    {{room.user_first_name}} {{room.user_last_name}}
+  </slot>
+  <span
+    class="room__unread_messages"
+    v-if="counter"
+  >{{counter}}</span>
+</a>

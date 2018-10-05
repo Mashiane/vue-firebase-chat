@@ -1,0 +1,26 @@
+
+<section>
+  <div class="message" v-if="!hide" :class="{'message--self': message.from === user, 'message--loading': message.loading} ">
+    <template v-for="(type, index) in messageTypes" v-if="messageTypes.length">
+      <div class="message__body" :key="index" v-if="message.type === type">
+        <slot
+          :name="type"
+          :message="message"
+          :room="room"
+          :date="getDate(message.updated_at)"
+          v-if="$scopedSlots[type]({message})[0][0][0]"
+          ref="check"
+        ></slot>
+        <template v-else>
+          <div class="message__date">
+            {{getDate(message.updated_at)}}
+          </div>
+          <div class="message__text" v-html="getText(message.text)">
+          </div>
+        </template>
+      </div>
+    </template>
+  </div>
+  <div v-else></div>
+</section>
+

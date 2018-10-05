@@ -1,0 +1,63 @@
+
+<section class="rooms" :class="{'rooms__not-found': !(computedRooms && computedRooms.length) && !loading }">
+  <div class="rooms__wrapper" ref="wrapper">
+    <div v-if="computedRooms && computedRooms.length">
+      <template v-for="room in computedRooms" v-if="room.id">
+        <div
+          v-if="room.title"
+          class="room__wrapper"
+        >
+          <div class="rooms__title">
+            {{room[groupRoomsBy]}}
+          </div>
+
+          <Room
+            v-for="room_inner in room.items"
+            :room="room_inner"
+            :updateRoom="updateRoom"
+            :roomPath="roomPath"
+            :user="user"
+            :key="room_inner.id"
+            :is_active="active_room && active_room.id === room_inner.id"
+          >
+            <template slot="room_item" slot-scope="room">
+              <slot name="room_item" :room="room.room">
+                {{room.user_first_name}} {{room.user_last_name}}
+              </slot>
+            </template>
+          </Room>
+        </div>
+        <Room
+          v-else
+          :room="room"
+          :updateRoom="updateRoom"
+          :user="user"
+          :is_active="active_room && active_room.id === room.id"
+        >
+          <template slot="room_item" slot-scope="room">
+            <slot name="room_item" :room="room.room">
+              {{room.user_first_name}} {{room.user_last_name}}
+            </slot>
+          </template>
+        </Room>
+      </template>
+    </div>
+    <div class="rooms__loading" v-else-if="loading"><Spinner></Spinner></div>
+    <div class="rooms__not_found" v-else></div>
+  </div>
+  <div class="rooms__search" :class="`rooms__search--${searchOrder}`">
+    <form action="" @submit.prevent="onSearchRoom">
+      <input
+        type="text"
+        class="rooms__search_input"
+        placeholder="Search"
+        v-model="search_room"
+        @keyup="onSearchRoom"
+      >
+      <button
+        type="submit"
+        class="rooms__search_button"
+      >Search</button>
+    </form>
+  </div>
+</section>

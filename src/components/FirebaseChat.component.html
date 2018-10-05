@@ -1,0 +1,56 @@
+<section
+		class="firebase-chat"
+		:class="{
+			'_is_active_message': current_active_room,
+			'_is_active_rooms': !current_active_room,
+			'_is_hide_submit_message': hideSubmitMessage
+		}"
+>
+	<Rooms
+			:rooms="rooms"
+			:groupRoomsBy="groupRoomsBy"
+			:searchRoomsBy="searchRoomsBy"
+			:active_room="current_active_room"
+			:searchOrder="searchOrder"
+			:roomPath="roomPath"
+			:user="user"
+			:updateRoom="updateRoom"
+	>
+		<template slot="room_item" slot-scope="room">
+			<slot name="room_item" :item="room.room"></slot>
+		</template>
+	</Rooms>
+
+	<ChatBody
+			v-if="current_active_room"
+			:active_room="current_active_room"
+			:userField="userField"
+			:fileLoader="fileLoader"
+			:messagesPath="messagesPath"
+			:filePath="filePath"
+			:roomPath="roomPath"
+			:messageTypes="types"
+			:updateRoom="updateRoom"
+			:orderMessagesByChild="orderMessagesByChild"
+			:equalMessagesTo="equalMessagesTo"
+			:hideSubmitMessage="hideSubmitMessage"
+			:updateCounter="updateCounter"
+	>
+		<template :slot="type" slot-scope="message" v-for="type in types">
+			<slot
+					:name="type"
+					:item="message.message"
+					:date="message.date"
+					:room="message.room"
+			></slot>
+		</template>
+
+		<template slot="room_header">
+			<slot name="room_header" :item="current_active_room"></slot>
+		</template>
+		<template slot="actions">
+			<slot name="actions" :item="current_active_room"></slot>
+		</template>
+	</ChatBody>
+</section>
+

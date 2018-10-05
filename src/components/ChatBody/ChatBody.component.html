@@ -1,0 +1,42 @@
+
+<section class="chat-body">
+  <div class="chat-body__wrapper">
+    <div class="chat-body__header">
+      <slot name="room_header">
+        <div class="chat-body__title">
+          {{active_room.name}}
+        </div>
+      </slot>
+      <div class="chat-body__back hide_on_desktop" @click="onClickBack()">&larr;</div>
+    </div>
+
+    <Messages
+      :room="active_room"
+      :user="active_room[userField]"
+      :file-loader="fileLoader"
+      :messages-path="messagesPath"
+      :filePath="filePath"
+      :message-types="messageTypes"
+      :updateRoom="updateRoom"
+      :roomPath="roomPath"
+      :hideSubmitMessage="hideSubmitMessage"
+      :orderMessagesByChild="orderMessagesByChild"
+      :equalMessagesTo="equalMessagesTo"
+      :updateCounter="updateCounter"
+    >
+      <template slot="actions">
+        <slot name="actions"></slot>
+      </template>
+
+      <template :slot="type" slot-scope="message" v-for="type in messageTypes">
+        <slot
+          :name="type"
+          :message="message.message"
+          :date="message.date"
+          :room="message.room"
+        ></slot>
+      </template>
+    </Messages>
+  </div>
+</section>
+

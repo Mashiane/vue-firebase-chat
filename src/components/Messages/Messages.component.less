@@ -1,0 +1,232 @@
+@import "./../variables";
+.messages {
+  flex: 1 1 0;
+  font-size: 16px;
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  &__body {
+    flex: 1 1 0;
+    overflow: auto;
+    padding: 0 33px;
+    box-sizing: border-box;
+
+    @media @mobile{
+      padding: 0 16px;
+    }
+
+    &_inner {
+      &--loading {
+        opacity: 0;
+      }
+    }
+  }
+
+  &__form {
+    background-color: @dark-grey;
+    padding: 24px 32px;
+
+    @media @tablet{
+      padding: 15px 32px;
+
+    }
+    @media @mobile{
+      background: #ffffff;
+      padding: 16px 52px 16px 40px;
+      position: fixed;
+      bottom: 0;
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    &--loading {
+      //opacity: 0.5;
+      pointer-events: none;
+    }
+
+    &_field {
+      margin-bottom: 35px;
+      position: relative;
+      @media @tablet{
+        margin-bottom: 25px;
+      }
+      @media @mobile{
+        margin-bottom: 0;
+      }
+    }
+
+    &_file {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      width: 48px;
+      height: 40px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transform: translate(0, -50%);
+      max-height: 100%;
+      color: transparent;
+      z-index: 11;
+      background: url('./../_assets/ic-attach-file-24-px.svg') 50% 50% no-repeat;
+
+      &--loading {
+        animation: pulse 2s infinite;
+
+        @keyframes pulse {
+          0% {
+            opacity: 1;
+          }
+          70% {
+            opacity: 0;
+          }
+          100% {
+            opacity: 1;
+          }
+        }
+      }
+
+      input {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        opacity: 0;
+        cursor: pointer;
+      }
+    }
+
+    &_buttons {
+      display: flex;
+      justify-content: space-between;
+
+      @media @mobile{
+        .form__button{
+          background: url('./../_assets/activ-icn.svg') 50% 50% no-repeat transparent;
+          text-indent: -100vw;
+          color: transparent;
+          height: 20px;
+          width: 20px;
+          position: absolute;
+          top: 26px;
+          left: 3px;
+          min-width: auto;
+          &:hover{
+            background-color: transparent;
+          }
+          &--disabled{
+            opacity: 0.4;
+          }
+        }
+      }
+    }
+
+    &_submit {
+      align-self: flex-end;
+      white-space: nowrap;
+      margin: 0 0 0 10px;
+
+      @media @mobile{
+        span{
+          display: none;
+        }
+      }
+      .messages__form_button {
+        margin: 0 0 0 10px;
+      }
+
+    }
+
+    &_button {
+      font-family: inherit;
+      background: @blue;
+      height: 44px;
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      text-align: center;
+      color: #ffffff;
+      padding: 0 30px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      border: 0;
+
+      &:focus {
+        outline: none;
+      }
+
+      &:hover {
+        background-color: @deep-blue;
+      }
+      @media @mobile{
+        background: url('./../_assets/send-icn.svg') 50% 50% no-repeat transparent;
+        text-indent: -100vw;
+        color: transparent;
+        height: 24px;
+        width: 24px;
+        position: absolute;
+        top: 22px;
+        right: 19px;
+        min-width: auto;
+        padding: 0;
+        border-radius: 0;
+        &:hover{
+          background-color: transparent;
+        }
+      }
+    }
+  }
+
+  &__input {
+    background: #fff;
+    border: 1px solid @dark-grey;
+    height: 50px;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.63;
+    letter-spacing: 0.1px;
+    color: @text-color;
+    padding: 10px 58px 12px 15px;
+    position: relative;
+    resize: none;
+    z-index: 10;
+
+    @media @tablet{
+      height: 40px;
+      padding: 7px 58px 6px 10px;
+    }
+    @media @mobile{
+      height: 36px;
+      max-height: 36px;
+      border-radius: 18px;
+      background-color: #ffffff;
+      border: solid 1px #2bc4f1;
+      line-height: 34px;
+      padding: 0 37px 0 17px;
+    }
+
+    &::placeholder {
+      color: @text-color;
+    }
+
+    &:focus {
+      border-color: @blue;
+      outline: none;
+    }
+  }
+}

@@ -1,0 +1,141 @@
+@import "./../variables";
+
+.rooms {
+  width: 370px;
+  object-fit: contain;
+  background-color: #ffffff;
+  border-right: solid 1px @grey;
+  display: flex;
+  flex-direction: column;
+
+  @media @tablet{
+    width: 100%;
+  }
+  @media @mobile{
+    width: 100%;
+  }
+
+  &__wrapper {
+    flex: 1 1 0;
+    overflow: auto;
+  }
+
+  &__loading {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &__not-found{
+    background: url('./../_assets/nothing.svg') 50% 50% no-repeat;
+    width: 100%;
+    .rooms__search--bottom{
+      display: none;
+    }
+    @media @tablet{
+      background-size: auto 170px;
+    }
+    @media @mobile{
+      background-size: auto 170px;
+    }
+  }
+
+  &__not_found {
+    //background: url('./../../../images/nothing.svg') 50% 50% no-repeat;
+    padding: 21px 24px;
+    text-align: center;
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__title {
+    background-color: #cecece;
+    border-bottom: 1px solid #cecece;
+    padding: 3px 24px;
+    font-family: @font;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 0.1px;
+    color: #0d0d0d;
+  }
+
+  &__search {
+    position: relative;
+
+    @media @mobile{
+      order: -1;
+    }
+
+    &_input {
+      border: 0;
+      background: #fff;
+      width: 100%;
+      display: block;
+      color: inherit;
+      font-family: inherit;
+      font-size: 16px;
+      letter-spacing: 0.1px;
+      height: 56px;
+      padding: 0 16px 0 52px;
+      box-sizing: border-box;
+      @media @tablet{
+        height: 53px;
+      }
+
+      &:focus {
+        outline: none;
+      }
+
+      &::placeholder {
+        color: inherit;
+      }
+    }
+
+    &_button {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 50px;
+      border: 0;
+      color: transparent;
+      cursor: pointer;
+      background: #fff url('./../_assets/ic-search-24-px.svg') 50% 50% no-repeat;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    &--bottom {
+      border-top: solid 1px @grey;
+    }
+
+    &--top {
+      order: -1;
+      border-bottom: solid 1px @grey;
+    }
+    @media @tablet{
+      order: -1;
+    }
+  }
+  ._is_active_message &{
+    @media @tablet{
+      display: none;
+    }
+    @media @mobile{
+      display: none;
+    }
+  }
+  ._is_active_rooms &{
+    @media @tablet{
+      display: flex;
+    }
+    @media @mobile{
+      display: flex;
+    }
+  }
+}

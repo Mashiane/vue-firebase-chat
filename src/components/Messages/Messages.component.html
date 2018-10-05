@@ -1,0 +1,64 @@
+
+<section class="messages">
+  <div class="messages__wrapper">
+    <div class="messages__body" ref="body">
+      <div class="messages__body_inner" :class="{'messages__body_inner--loading': messages_loading}">
+        <Message
+          v-if="sortedMessages && sortedMessages['.value'] !== null && key !== '.key'"
+          v-for="(message, key) in sortedMessages"
+          :message="message"
+          :user="user"
+          :key="message.id"
+          :messageTypes="messageTypes"
+          :room="room"
+        >
+          <template :slot="type" slot-scope="message" v-for="type in messageTypes">
+            <slot
+              :name="type"
+              :message="message.message"
+              :date="message.date"
+              :room="message.room"
+            ></slot>
+          </template>
+        </Message>
+      </div>
+    </div>
+
+    <div class="messages__form" :class="{'messages__form--loading': loading}" v-if="!hideSubmitMessage">
+      <form action="" @submit.prevent="onSubmit">
+        <div class="messages__form_field messages__form_field--white">
+          <textarea
+            type="text"
+            class="messages__input"
+            placeholder="Write something"
+            v-model="formData.text"
+            name="text"
+            ref="textarea"
+          >
+          </textarea>
+          <label
+            for="messages__form_file"
+            class="messages__form_file"
+            :class="{'messages__form_file--loading': loading}"
+            v-if="fileLoader"
+          >
+            Add file
+            <input
+              @change="onFileChange"
+              type="file"
+              id="messages__form_file"
+              ref="input_file"
+            >
+          </label>
+        </div>
+        <div class="messages__form_buttons">
+          <slot name="actions" :room="room"></slot>
+          <div class="messages__form_submit">
+            <span>Press “Enter” or </span><button type="submit" class="messages__form_button">Send</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+

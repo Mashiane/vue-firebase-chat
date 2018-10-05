@@ -1,0 +1,80 @@
+@import "./../../variables";
+.message {
+  margin: 35px 25% 35px 0;
+  display: flex;
+
+  @media @tablet{
+    margin: 35px 20% 35px 0;
+  }
+  @media @mobile{
+    margin: 20px 0;
+  }
+
+  &__body{
+    width: 100%;
+  }
+
+  &__date {
+    font-size: 13px;
+    letter-spacing: 0.1px;
+    color: #9b9b9b;
+    padding: 2px 20px;
+  }
+
+  &__text {
+    border-radius: 5px;
+    background-color: #f6f5f5;
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: 0.1px;
+    padding: 14px 20px 15px;
+    .form__buttons {
+      padding: 30px 0 0px;
+      margin: 0 -10px;
+
+      @media @mobile{
+        padding: 10px 0 6px;
+        margin: 0;
+      }
+    }
+    .form__button{
+      height: 44px;
+      margin: 0 10px 6px;
+
+      @media @mobile{
+        width: 100%;
+        margin: 10px 0 0;
+      }
+    }
+  }
+
+  &--self {
+    justify-content: flex-end;
+    align-items: flex-end;
+    margin: 35px 0 35px 25%;
+    @media @tablet{
+      margin: 35px 0 35px 20%;
+    }
+    @media @mobile{
+      margin: 20px 0;
+    }
+  }
+
+  &--self &__text {
+    background-color: @deep-blue;
+    color: #fff;
+  }
+
+  &--loading {
+    opacity: 0.5;
+  }
+
+  &__title {
+    font-family: @font;
+    font-size: 22px;
+    font-weight: bold;
+    line-height: 1.09;
+    letter-spacing: 0.1px;
+    margin: 6px 0 11px;
+  }
+}
